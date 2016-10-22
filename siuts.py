@@ -1,10 +1,12 @@
 from flask import Flask, request
 from flask.ext.api import status
 from flask.ext.redis import FlaskRedis
+from threading import Thread
 from bird import Bird
 import jsonpickle
 import json
 import uuid
+import time
 
 app = Flask(__name__)
 redis_store = FlaskRedis(app)
@@ -22,16 +24,26 @@ def process_classification_request():
     if not audio_data:
         return 'Invalid request, audio data missing', status.HTTP_400_BAD_REQUEST
     request_id = str(uuid.uuid4())
-    redis_store.set(request_id, None)
-    classify(audio_data, request_id)
+    redis_store.set(request_id, '')
+    background_thread = Thread(target=classify, args=(audio_data,request_id))
+    background_thread.start()
     return request_id
 
 def classify(audio_data, request_id):
     ### Do magic here ###
+    time.sleep(20)
     result = [{'name': 'phylloscopus_sibilatrix', 'match': 53.11}, {'name': 'parus_major', 'match': 72.15}]
-    redis_store.set(request_id, jsonpickle.encode(result, unpicklable=False))
+    enriched_result = []
+    for r in result:
+        bird = get_bird_by_name(r['name'])
+        if not bird:
+            pass
+        enriched_bird = eval(bird).copy()
+        enriched_bird.update({'match': r['match']})
+        enriched_result.append(enriched_bird)
+    redis_store.set(request_id, jsonpickle.encode(enriched_result, unpicklable=False))
 
-@app.route('/status/<string:request_id>', methods=['GET'])
+@app.route('/classify/<string:request_id>', methods=['GET'])
 def check_session_status(request_id):
     classifier_status = redis_store.get(request_id)
     if not classifier_status:

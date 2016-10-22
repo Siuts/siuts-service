@@ -1,13 +1,15 @@
 from flask import Flask
 from bird import Bird
 import jsonpickle
+import json
 
 app = Flask(__name__)
+birds = []
+with open('birds.json') as data_file:
+    data = json.load(data_file)
 
-birds = [
-    Bird('parus_major', 'Parus Major', 'Great tit', 'Rasvatihane', 'The super awesome bird'),
-    Bird('parus_minor', 'Parus Major', 'Great tit', 'Rasvatihane', 'This bird doesn\'t even exist')
-]
+for b in data['birds']:
+    birds.append(Bird(b['name'],b['name_la'],b['name_en'],b['name_ee'],b['description']))
 
 @app.route('/classify_bird', methods=['POST'])
 def get_matching_birds():
@@ -21,7 +23,6 @@ def get_all_birds():
 def get_bird_by_name(bird_name):
     bird = next((b for b in birds if b.name == bird_name), {})
     return jsonpickle.encode(bird, unpicklable=False)
-
 
 if __name__ == '__main__':
     app.run()

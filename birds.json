@@ -1,0 +1,74 @@
+{
+  "birds": [
+    {
+      "name": "parus_major",
+      "name_la": "Parus Major",
+      "name_en": "Great tit",
+      "name_ee": "Rasvatihane",
+      "description": "Appearance: Familiar visitors to gardens and bird tables. Head mainly black with white cheek patch. Yellow belly marked with a broad medial black stripe. Back greenish grey."
+    },
+    {
+      "name": "fringilla_coelebs",
+      "name_la": "Fringilla Coelebs",
+      "name_en": "Eurasian Chaffinch",
+      "name_ee": "Metsvint",
+      "description": "Appearance: One of the most common bird species in Finland. White or whitish wing bars, greenish rump and white edges to tail distinctive in all plumages. Males in summer plumage are easily recognisable due to their bright colouring. Females lack reddish pink underparts and cheeks. Males are slightly larger than females."
+    },
+    {
+      "name": "turdus_merula",
+      "name_la": "Turdus Merula",
+      "name_en": "Blackbird",
+      "name_ee": "Musträstas",
+      "description": "Appearance: A large dark-coloured thrush. Males have totally black plumage; females and juveniles are dark brown. May be confused with the Starling, but Blackbirds have longer tails and hop with both feet rather than walking."
+    },
+    {
+      "name": "emberiza_citrinella",
+      "name_la": "Emberiza Citrinella",
+      "name_en": "Yellowhammer",
+      "name_ee": "Talvike",
+      "description": "Appearance: A largish and fairly long-tailed bunting with streaked patterning. Rump reddish brown, plumage has varying degrees of yellow colouring. Beak relatively small with a bluish grey lower mandible."
+    },
+    {
+      "name": "chloris_chloris",
+      "name_la": "Chloris Chloris",
+      "name_en": "European Greenfinch",
+      "name_ee": "Rohevint",
+      "description": "Appearance: A largish, stocky finch, with distinctive greenish colouring. Body, head and beak all thickset. Best distinguished by yellow edges to tail and yellow outermost wing feathers."
+    },
+    {
+      "name": "apus_apus",
+      "name_la": "Apus Apus",
+      "name_en": "Swift",
+      "name_ee": "Piiritaja",
+      "description": "Appearance: Almost entirely dark brown, with a pale throat patch. Flight pattern different from that of swallows and martins, with short series of rapid wingbeats alternating with long periods of soaring flight."
+    },
+    {
+      "name": "phoenicurus_phoenicurus",
+      "name_la": "Phoenicurus Phoenicurus",
+      "name_en": "Redstart",
+      "name_ee": "Lepalind",
+      "description": "Appearance: A colourful and lively small songbird. Central tail feathers brownish, outer tail feathers and rump rusty reddish brown. Male has a distinctive black face mask and white forehead. Female duller in colouring, paler than similar female Black Redstart."
+    },
+    {
+      "name": "locustella_fluviatilis",
+      "name_la": "Locustella Fluviatilis",
+      "name_en": "River Warbler",
+      "name_ee": "Jõgi-ritsiklind",
+      "description": "Appearance: This is a largish warbler. The adult has an unstreaked grey-brown back, whitish grey underparts, and a darker undertail, which has white feather tips giving a contrasting pattern. The sexes are identical, as with most warblers, but young birds are yellower below."
+    },
+    {
+      "name": "phylloscopus_sibilatrix",
+      "name_la": "Phylloscopus Sibilatrix",
+      "name_en": "Wood Warbler",
+      "name_ee": "Mets-lehelind",
+      "description": "Appearance: The tail is relatively short, the wings long, and overall the plumage appears vivid and fresh. The sexes are similar; yellowish-green on top, white underneath with a distinctive yellow throat and breast, pinkish-brown legs, yellow strip above the eye and a dark one through it."
+    },
+    {
+      "name": "dendrocopos_major",
+      "name_la": "Dendrocopos Major",
+      "name_en": "Great Spotted Woodpecker",
+      "name_ee": "Suur-kirjurähn",
+      "description": "Appearance: A black and white woodpecker with a bright red vent. Similar to White-backed Woodpecker, but back black, and underparts lack streaking. Has two broad white shoulder patches. Females have black caps and napes, but males have red patches on their napes, and immature birds have red caps."
+    }
+  ]
+}

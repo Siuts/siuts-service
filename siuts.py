@@ -30,9 +30,17 @@ for b in data['birds']:
 
 @app.route('/classify', methods=['POST'])
 def process_classification_request():
-    audio_data = request.form['audio_data']
-    if not audio_data:
-        return 'Invalid request, audio data missing', status.HTTP_400_BAD_REQUEST
+    if 'audio_data' not in request.files:
+        return 'Invalid request, audio_data missing', status.HTTP_400_BAD_REQUEST
+        
+    print ('======================================================')
+    print (request.files['audio_data'])
+    filename = audiofiles.save(request.files['audio_data'])
+    fullfilename = os.path.join(UPLOAD_FOLDER, filename)
+    print ('FILENAME', fullfilename)
+    
+    # TODO: stuff
+        
     request_id = str(uuid.uuid4())
     redis_store.set(request_id, '')
     background_thread = Thread(target=classify, args=(audio_data,request_id))
@@ -76,7 +84,6 @@ def get_bird_by_name(bird_name):
 
 @app.route('/test_endpoint', methods=['POST'])
 def test_endpoint():
-    
     if 'audio_data' in request.files:
         print ('======================================================')
         print (request.files['audio_data'])

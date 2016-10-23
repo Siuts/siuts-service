@@ -11,7 +11,7 @@ import json
 import uuid
 import time
 
-UPLOAD_FOLDER = '/Users/timo/projects/siuts-service/audiodata'
+UPLOAD_FOLDER = '/var/www/siuts/audiodata'
 
 app = Flask(__name__)
 redis_store = FlaskRedis(app)
@@ -36,18 +36,16 @@ def process_classification_request():
     print ('======================================================')
     print (request.files['audio_data'])
     filename = audiofiles.save(request.files['audio_data'])
-    fullfilename = os.path.join(UPLOAD_FOLDER, filename)
-    print ('FILENAME', fullfilename)
-    
-    # TODO: stuff
-        
+    audio_file_name = os.path.join(UPLOAD_FOLDER, filename)
+    print ('FILENAME', audio_file_name)
+
     request_id = str(uuid.uuid4())
     redis_store.set(request_id, '')
-    background_thread = Thread(target=classify, args=(audio_data,request_id))
+    background_thread = Thread(target=classify, args=(audio_file_name,request_id))
     background_thread.start()
     return request_id
 
-def classify(audio_data, request_id):
+def classify(audio_file_name, request_id):
     ### Do magic here ###
     time.sleep(20)
     result = [{'name': 'phylloscopus_sibilatrix', 'match': 53.11}, {'name': 'parus_major', 'match': 72.15}]

@@ -1,15 +1,25 @@
+import os
 from flask import Flask, request
 from flask.ext.api import status
 from flask.ext.redis import FlaskRedis
+from flask_uploads import UploadSet, configure_uploads, patch_request_class
 from threading import Thread
 from bird import Bird
+from pprint import pformat
 import jsonpickle
 import json
 import uuid
 import time
 
+UPLOAD_FOLDER = '/Users/timo/projects/siuts-service/audiodata'
+
 app = Flask(__name__)
 redis_store = FlaskRedis(app)
+
+audiodata = UploadSet('audiodata', default_dest='audiodata')
+app.config['UPLOADED_AUDIODATA_DEST'] = UPLOAD_FOLDER
+audiofiles = UploadSet('audiofiles', ('mp3', '3gpp', 'jpg'), lambda app: UPLOAD_FOLDER)
+configure_uploads(app, (audiofiles,))
 
 birds = []
 with open('birds.json') as data_file:
@@ -63,6 +73,17 @@ def get_bird_by_name(bird_name):
     if not bird:
         return 'Sorry, the bird you are looking for is in another castle', status.HTTP_404_NOT_FOUND
     return jsonpickle.encode(bird, unpicklable=False)
+
+@app.route('/test_endpoint', methods=['POST'])
+def test_endpoint():
+    
+    if 'audio_data' in request.files:
+        print ('======================================================')
+        print (request.files['audio_data'])
+        filename = audiofiles.save(request.files['audio_data'])
+        fullfilename = os.path.join(UPLOAD_FOLDER, filename)
+        print ('FILENAME', fullfilename)
+        return 'TEST'
 
 if __name__ == '__main__':
     app.run()
